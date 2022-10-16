@@ -139,7 +139,7 @@ for(i in 1:100){
 
 y = rbinom(100,1,exp(pr+spatial_effect)/(1+exp(pr+spatial_effect)))
 ##    (2) enlist input data 
-data_spatial = list(N=100,M=20,X=X,y=y,N_area=5,N_edges=nbs$N_edges,node1=nbs$node1,node2=nbs$node2,S=area)
+data_spatial = list(N=100,M=20,X=X,y=y,N_area=5,N_edges=7,node1=nbs$node1,node2=nbs$node2,S=area)
 
 ## 3. fit the stan model
 fit_spatial <- sampling(
