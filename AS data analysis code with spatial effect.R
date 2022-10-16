@@ -146,7 +146,7 @@ fit_spatial <- sampling(
   spatial_model
   , data = data_spatial
   , iter = 3000
-  , cores = 3
+  , cores = 4
   , chains = 4
   , verbose = F,control = list(adapt_delta = 0.95))
 
