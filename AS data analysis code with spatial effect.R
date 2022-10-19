@@ -105,8 +105,7 @@ for(j in 1:20){
   }
 }
 
-beta = c(runif(3,min=-1.2,max=(-0.3)), runif(3,max=1.5,min=0.2), rnorm(14,mean=0,sd=0.1))
-pr = apply(X*beta,1,sum)
+beta = c(runif(3,min=-2,max=(-0.8)), runif(3,max=2,min=0.8), rnorm(14,mean=0,sd=0.1))
 
 # Then generate spatial effects, we assmue 5 regions, with region 1 motropolitan, and region 5 remote areas 
 # we design the following adjacency strcuture: region 1 adjacent to 2 4 , 2 adjacent to 1 3 4 5 , 3 to 2 5 , 4 to 1 2 5 and region 5 adjacent to 3 4  
@@ -137,7 +136,7 @@ for(i in 1:100){
   }
 }
 
-y = rbinom(100,1,exp(pr+spatial_effect)/(1+exp(pr+spatial_effect)))
+y = rbinom(100,1,exp(X%*%beta+spatial_effect)/(1+exp(X%*%beta+spatial_effect)))
 ##    (2) enlist input data 
 data_spatial = list(N=100,M=20,X=X,y=y,N_area=5,N_edges=7,node1=nbs$node1,node2=nbs$node2,S=area)
 
