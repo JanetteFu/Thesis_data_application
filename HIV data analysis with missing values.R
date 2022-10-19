@@ -136,8 +136,8 @@ for(j in 18:20){
   X[,j] = rbinom(100,1,0.25);
 }
 
-beta = c(runif(2,min=-1.2,max=(-0.3)), runif(2,max=1.5,min=0.2), rnorm(14,mean=0,sd=0.1), 
-         0.7,-0.7)
+beta = c(runif(2,min=-2,max=(-0.8)), runif(2,max=1.8,min=1), rnorm(14,mean=0,sd=0.1), 
+         1,-1)
 pr = apply(X*beta,1,sum)
 ##    (2) decide some observations missing  
 X_com = X[,1:17] 
@@ -147,7 +147,7 @@ active = X[,18]
 gender = X[,19]
 partner = X[,20]
 
-y = rbinom(100,1,exp(pr)/(1+exp(pr)))
+y = rbinom(100,1,exp(X%*%beta)/(1+exp(X%*%beta)))
 
 ##    (2) enlist input data 
 data_imputation = list(N=100,X_mis=mis_condition,Ms=17,M=20,X=X_com,N_a=18,N_g=19,N_p=20,active=active,gender=gender,partner=partner,y_obs=y)
